@@ -1,8 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-void _putchar(char c);
-void times_table(void);
+int _putchar(char c);
+int add(int a, int b);
 
 #endif /* MAIN_H */
 
