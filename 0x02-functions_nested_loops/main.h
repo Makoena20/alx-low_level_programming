@@ -2,8 +2,7 @@
 #define MAIN_H
 
 int _putchar(char c);
-int print_last_digit(int);
-/* Add any additional function prototypes or declarations here if needed */
+void jack_bauer(void);
 
 #endif /* MAIN_H */
 
