@@ -3,6 +3,7 @@
 
 int main(void);
 int putchar(int c);
+int main(void);
 
 #endif /* MAIN_H */
 
