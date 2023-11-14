@@ -1,72 +1,35 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * _atoi - Converts a string to an integer.
  * @s: The string to convert.
  *
- * Return: The converted integer.
+ * Return: The integer value of the converted string.
  */
 int _atoi(char *s)
 {
-    int result = 0;
     int sign = 1;
+    int result = 0;
     int i = 0;
 
-    /* Skip leading spaces and handle signs */
-    while (s[i] == ' ' || (s[i] == '-' || s[i] == '+'))
+    while (s[i] != '\0' && (s[i] == ' ' || (s[i] >= '0' && s[i] <= '9') ||
+                           (s[i] == '-' && (s[i + 1] >= '0' && s[i + 1] <= '9')) ||
+                           (s[i] == '+' && (s[i + 1] >= '0' && s[i + 1] <= '9'))))
     {
         if (s[i] == '-')
+            sign *= -1;
+
+        if (s[i] >= '0' && s[i] <= '9')
         {
-            sign = -sign;
+            result = result * 10 + (s[i] - '0') * sign;
+
+            if (!(s[i + 1] >= '0' && s[i + 1] <= '9'))
+                break;
         }
+
         i++;
     }
 
-    /* Process each character to build the integer */
-    while (s[i] >= '0' && s[i] <= '9')
-    {
-        int digit = s[i] - '0';
-
-        /* Check for overflow before updating result */
-        if (result > (INT_MAX - digit) / 10)
-        {
-            /* Handle overflow by returning 0 */
-            return 0;
-        }
-
-        result = result * 10 + digit;
-        i++;
-    }
-
-    return sign * result;
-}
-
-/**
- * main - Check the _atoi function.
- *
- * Return: Always 0.
- */
-int main(void)
-{
-    int nb;
-
-    nb = _atoi("98");
-    printf("%d\n", nb);
-    nb = _atoi("-402");
-    printf("%d\n", nb);
-    nb = _atoi("          ------++++++-----+++++--98");
-    printf("%d\n", nb);
-    nb = _atoi("214748364");
-    printf("%d\n", nb);
-    nb = _atoi("0");
-    printf("%d\n", nb);
-    nb = _atoi("Suite 402");
-    printf("%d\n", nb);
-    nb = _atoi("         +      +    -    -98 Battery Street; San Francisco, CA 94111 - USA             ");
-    printf("%d\n", nb);
-    nb = _atoi("---++++ -++ Sui - te -   402 #cisfun :)");
-    printf("%d\n", nb);
-    return (0);
+    return result;
 }
 

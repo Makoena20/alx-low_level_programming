@@ -1,45 +1,30 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * _atoi - Converts a string to an integer.
- * @s: The string to be converted.
+ * main - check the code
  *
- * Return: The converted integer.
+ * Return: Always 0.
  */
-int _atoi(char *s)
+int main(void)
 {
-	int sign = 1; /* To store the sign of the number */
-	int result = 0; /* To store the final result */
-	int i = 0;
+    int nb;
 
-	/* Skip leading whitespaces */
-	while (s[i] == ' ' || (s[i] >= 9 && s[i] <= 13))
-		i++;
-
-	/* Check for the sign of the number */
-	while (s[i] == '-' || s[i] == '+')
-	{
-		if (s[i] == '-')
-			sign *= -1;
-		i++;
-	}
-
-	/* Calculate the result */
-	while (s[i] >= '0' && s[i] <= '9')
-	{
-		/* Check for overflow */
-		if (result > (result * 10 + (s[i] - '0')) / 10)
-		{
-			if (sign == 1)
-				return (2147483647);
-			else
-				return (-2147483648);
-		}
-		result = result * 10 + (s[i] - '0');
-		i++;
-	}
-
-	/* Apply the sign to the result and return */
-	return (result * sign);
+    nb = _atoi("98");
+    printf("%d\n", nb);
+    nb = _atoi("-402");
+    printf("%d\n", nb);
+    nb = _atoi("          ------++++++-----+++++--98");
+    printf("%d\n", nb);
+    nb = _atoi("214748364");
+    printf("%d\n", nb);
+    nb = _atoi("0");
+    printf("%d\n", nb);
+    nb = _atoi("Suite 402");
+    printf("%d\n", nb);
+    nb = _atoi("         +      +    -    -98 Battery Street; San Francisco, CA 94111 - USA             ");
+    printf("%d\n", nb);
+    nb = _atoi("---++++ -++ Sui - te -   402 #cisfun :)");
+    printf("%d\n", nb);
+    return (0);
 }
-
