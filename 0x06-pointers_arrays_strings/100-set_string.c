@@ -1,9 +1,11 @@
 #include "main.h"
 
 /**
- * set_string - sets the value of a pointer to a char.
- * @s: pointer to a pointer to a char (string)
- * @to: pointer to a char (string) to set the value of @s to
+ * set_string - Sets the value of a pointer to a char.
+ * @s: Pointer to a pointer to a char.
+ * @to: Pointer to a char.
+ *
+ * Description: The function sets the value of a pointer to a char.
  */
 void set_string(char **s, char *to)
 {
