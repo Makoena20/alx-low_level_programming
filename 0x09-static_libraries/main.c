@@ -1,8 +1,13 @@
-#include "main.h"
+#include <stdio.h>
 
-int main(void)
+int main(void) {
+    // Call the _puts function from the static library
+    _puts("Hello, world!");
+    return 0;
+
+    int main(void)
 {
     _puts("\"At the end of the day, my goal was to be the best hacker\"\n\t- Kevin Mitnick");
     return (0);
-}
 
+}
