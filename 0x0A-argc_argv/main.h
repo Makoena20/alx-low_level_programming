@@ -11,5 +11,7 @@ int multiply(int a, int b);
 int _putchar(char c);
 int is_digit(char *str);
 int add_numbers(int argc, char *argv[]);
+int _putchar(char c);
+int make_change(int cents);
 
 #endif /* MAIN_H */
