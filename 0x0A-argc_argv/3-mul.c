@@ -1,29 +1,16 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * multiply - Multiplies two integers.
- * @a: The first integer.
- * @b: The second integer.
+ * main - multiplies two numbers
+ * @argc: number of arguments passed to the program
+ * @argv: array of arguments passed to the program
  *
- * Return: The result of the multiplication.
- */
-int multiply(int a, int b)
-{
-    return (a * b);
-}
-
-/**
- * main - Entry point of the program.
- * @argc: The number of command line arguments.
- * @argv: An array containing the command line arguments.
- *
- * Return: 0 if successful, 1 if the number of arguments is incorrect.
+ * Return: 0 if successful, 1 if error
  */
 int main(int argc, char *argv[])
 {
-    int num1, num2, result;
+    int num1, num2, product;
 
     if (argc != 3)
     {
@@ -31,15 +18,11 @@ int main(int argc, char *argv[])
         return (1);
     }
 
-    /* Convert command line arguments to integers */
     num1 = atoi(argv[1]);
     num2 = atoi(argv[2]);
+    product = num1 * num2;
 
-    /* Perform multiplication */
-    result = multiply(num1, num2);
-
-    /* Print the result */
-    printf("%d\n", result);
+    printf("%d\n", product);
 
     return (0);
 }
