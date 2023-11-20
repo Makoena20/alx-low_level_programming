@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Create a static library from all .c files in the current directory
+# Compile all .c files in the current directory into object files
+gcc -c *.c
 
-# Compile each .c file into a .o file
-gcc -Wall -Werror -Wextra -pedantic -c *.c
+# Create a static library named liball.a from the compiled object files
+ar rc liball.a *.o
 
-# Create the static library liball.a from the compiled .o files
-ar -rc liball.a *.o
+# Index the static library
+ranlib liball.a
 
-# Clean up the temporary .o files
+# Clean up the temporary object files
 rm *.o
