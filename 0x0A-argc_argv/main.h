@@ -5,5 +5,6 @@
 
 /* Function prototypes */
 void print_program_name(char *program_name);
+int countArguments(char *argv[]);
 
 #endif /* MAIN_H */
