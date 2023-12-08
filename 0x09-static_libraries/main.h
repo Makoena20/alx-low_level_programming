@@ -1,10 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h>  // Include any necessary headers here
-
-// Declare function prototypes or other necessary declarations here
-
 int _putchar(char c);
 int _islower(int c);
 int _isalpha(int c);
@@ -27,3 +23,4 @@ char *_strpbrk(char *s, char *accept);
 char *_strstr(char *haystack, char *needle);
 
 #endif /* MAIN_H */
+
