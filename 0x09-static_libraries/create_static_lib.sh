@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Compile all .c files in the current directory into object files
-gcc -c *.c
+# Compile each source file and create corresponding object files
+for file in *.c; do
+    gcc -c "$file" -o "${file%.c}.o"
+done
 
-# Create a static library named liball.a from the compiled object files
-ar rc liball.a *.o
+# Create the static library using all the object files
+ar -rcs liball.a *.o
 
-# Index the static library
-ranlib liball.a
+# Clean up: remove the temporary object files
+rm -f *.o
 
-# Clean up the temporary object files
-rm *.o
