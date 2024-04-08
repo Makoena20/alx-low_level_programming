@@ -1,19 +1,17 @@
-# Makefile for school project
-
-CC := gcc
-NAME := school
-SRC := main.c school.c
-OBJ := $(SRC:.c=.o)
-RM := rm -f
-CFLAGS := -Wall -Werror -Wextra -pedantic
+CC = gcc
+SRC = main.c m.c
+OBJ = main.o m.o
+NAME = school
+RM = rm -f
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) $(wildcard *~) $(wildcard *#) $(NAME)
+	$(RM) $(OBJ) $(NAME)
 
 oclean:
 	$(RM) $(OBJ)
@@ -21,9 +19,16 @@ oclean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+re:
+	$(RM) $(OBJ) $(NAME)
+	$(MAKE) all
 
-%.o: %.c m.h
+-include m.d
+
+%.d: %.c
+	$(CC) -M $(CFLAGS) $< > $@
+
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: all clean oclean fclean re
