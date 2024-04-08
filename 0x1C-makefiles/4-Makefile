@@ -10,8 +10,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+.PHONY: clean oclean fclean re
 
 clean:
 	$(RM) $(OBJ) $(NAME)
@@ -19,9 +18,11 @@ clean:
 oclean:
 	$(RM) $(OBJ)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	$(RM) $(OBJ) $(NAME)
+	make -f 4-Makefile clean
 
-re: clean
-	make -B $(NAME)
+re:
+	make -f 4-Makefile oclean
+	make -f 4-Makefile all
 
