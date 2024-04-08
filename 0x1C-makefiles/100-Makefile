@@ -3,12 +3,18 @@ SRC = main.c m.c
 OBJ = main.o m.o
 NAME = school
 RM = rm -f
+
 CFLAGS = -Wall -Werror -Wextra -pedantic
+
+.PHONY: all clean oclean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $@
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ) $(NAME)
@@ -16,20 +22,12 @@ clean:
 oclean:
 	$(RM) $(OBJ)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean: clean oclean
 
 re:
 	$(RM) $(OBJ) $(NAME)
-	$(MAKE) all
+	touch $(SRC)
+	make
 
--include m.d
-
-%.d: %.c
-	$(CC) -M $(CFLAGS) $< > $@
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-.PHONY: all clean oclean fclean re
+-include m.h
 
