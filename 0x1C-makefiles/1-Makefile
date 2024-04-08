@@ -1,20 +1,13 @@
-# Makefile for building school executable
+CC = gcc
+SRC = main.c school.c
 
-# Compiler
-CC := gcc
+all: school
 
-# Source files
-SRC := main.c school.c
+school: $(SRC)
+	$(CC) $^ -o $@
 
-# Executable name
-EXEC := school
-
-all: $(EXEC)
-
-$(EXEC): $(SRC)
-    $(CC) $^ -o $@
-
-.PHONY: clean
 clean:
-    rm -f $(EXEC)
+	rm -f school
+
+.PHONY: all clean
 
