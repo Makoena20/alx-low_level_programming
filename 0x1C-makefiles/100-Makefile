@@ -1,27 +1,28 @@
 CC = gcc
+SRC = main.c school.c
 NAME = school
-SRCS = main.c m.c
-OBJS = $(SRCS:.c=.o)
 RM = rm -f
-
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
+$(NAME): $(SRC:%.c=%.o)
+	$(CC) $(CFLAGS) $(SRC:%.c=%.o) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(NAME)
+	$(RM) $(NAME) $(SRC:%.c=%.o)
 
 oclean:
-	$(RM) $(OBJS)
+	$(RM) $(SRC:%.c=%.o)
 
 fclean:
-	$(RM) $(OBJS) $(NAME)
-	-@echo "File m.h missing" && exit 1
+	$(RM) $(NAME) $(SRC:%.c=%.o)
 
-re: clean
-	$(CC) $(SRCS) $(CFLAGS) -o $(OBJS)
+re:
+	$(RM) $(SRC:%.c=%.o)
+	touch $(SRC)
 
--include $(OBJS:.o=.d)
+.PHONY: all clean oclean fclean re
