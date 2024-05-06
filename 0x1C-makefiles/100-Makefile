@@ -1,29 +1,28 @@
-CC = gcc
-SRC = main.c other.c
-OBJ = $(SRC:.c=.o)
-NAME = school
-CFLAGS = -Wall -Werror -Wextra -pedantic
+# Makefile for school executable
+
+CC := gcc
+NAME := school
+SRC := $(wildcard *.c)
+OBJ := $(SRC:.c=.o)
 RM := rm -f
+CFLAGS := -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean oclean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-    $(CC) $(OBJ) -o $@
+	$(CC) $(OBJ) -o $@
 
 clean:
-    $(RM) *~ $(NAME)
+	$(RM) $(wildcard *~) $(NAME)
 
 oclean:
-    $(RM) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean oclean
 
 re: fclean all
-
-%.o: %.c
-    $(CC) $(CFLAGS) -c $< -o $@
 
 -include m.h
 
