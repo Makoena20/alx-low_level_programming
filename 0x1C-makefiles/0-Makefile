@@ -1,8 +1,14 @@
-school: main_0.c school.c
-    gcc $^ -o $@
-
 all: school
 
+school: main_0.o school.o
+	gcc main_0.o school.o -o school
+
+main_0.o: main_0.c
+	gcc -c main_0.c -o main_0.o
+
+school.o: school.c
+	gcc -c school.c -o school.o
+
 clean:
-    rm -f school
+	rm -f school *.o
 
