@@ -1,33 +1,29 @@
-#!/usr/bin/python3
+NAME = school
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-CC := gcc
-NAME := school
-RM := rm -f
+SRC = main.c school.c
 
-SRC := main.c school.c
-
-OBJ := $(SRC:.c=.o)
-
-CFLAGS := -Wall -Werror -Wextra -pedantic
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-
-%.o: %.c
-	$(CC) -c $< -o $@
+	$(CC) $(OBJ) -o $@
 
 clean:
-	$(RM) $(wildcard *~) $(wildcard *#) $(wildcard *.swp) $(wildcard *.o)
+	/bin/rm -f $(NAME) $(wildcard *~)
 
 oclean:
-	$(RM) $(OBJ)
+	/bin/rm -f $(OBJ)
 
 fclean: clean oclean
-	$(RM) $(NAME)
 
 re: fclean all
 
 .PHONY: all clean oclean fclean re
+
+ifeq (,$(wildcard m.h))
+$(error m.h is missing)
+endif
 
