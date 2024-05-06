@@ -1,11 +1,10 @@
 # Makefile for school executable
 
-CC := gcc
-NAME := school
-SRC := $(wildcard *.c)
-OBJ := $(SRC:.c=.o)
-RM := rm -f
-CFLAGS := -Wall -Werror -Wextra -pedantic
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean oclean fclean re
 
@@ -15,14 +14,18 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $@
 
 clean:
-	$(RM) $(wildcard *~) $(NAME)
+	$(RM) $(wildcard *~) $(wildcard \#*) $(NAME)
 
 oclean:
 	$(RM) $(OBJ)
 
-fclean: clean oclean
+fclean: clean
+	$(RM) $(NAME)
 
 re: fclean all
 
--include m.h
+# Check for existence of m.h
+ifeq ("$(wildcard m.h)","")
+$(error "m.h not found!")
+endif
 
